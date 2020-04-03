@@ -1,5 +1,11 @@
 # cybergame
 
+![alt text][logo]
+
+[logo]: cover.png "Cyber game"
+
+---
+
 ### Docker Setup
 ```
 docker-compose up -d --build
@@ -9,6 +15,7 @@ docker-compose up -d --build
 
 http://localhost:8081/
 
+---
 
 ### Manual Setup
 ```
@@ -34,6 +41,8 @@ npm run test:e2e
 ```
 npm run test:unit
 ```
+
+---
 
 ### Settings
 Settings can be made in _.env_ file that is located in the root of the project
