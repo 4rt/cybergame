@@ -1,28 +1,38 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <main id="app">
+    <game-field />
+  </main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { mapActions } from 'vuex';
+import { populateEmptyGrid } from '@/utils/index';
+import GameField from '@/components/GameField';
 
 export default {
-  name: 'app',
   components: {
-    HelloWorld,
+    GameField,
+  },
+  methods: {
+    ...mapActions(['updateGrid']),
+  },
+  beforeMount() {
+    this.updateGrid(populateEmptyGrid());
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style>
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: mediumslateblue;
+  }
 </style>

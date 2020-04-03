@@ -40,7 +40,19 @@
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "rules": {},
+    "rules": {
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "vue": "never",
+          "js": "never"
+        }
+      ],
+      "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
+      "max-len": ["error", { "code": 120 }],
+      "no-use-before-define": ["error", { "functions": false}]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     },
