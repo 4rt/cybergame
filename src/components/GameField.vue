@@ -7,14 +7,13 @@
       @populateCells="populateCells"
       @clearCells="clearCells"
     />
-    <div v-if="grid.length" id="grid">
+    <div v-if="validGrid" id="grid">
       <div v-for="(row, rowIndex) in grid" :key="rowIndex" class="rows">
-        <!-- TODO rename this to something else, this is actually row of cells -->
-        <cell class="row" :row="row" :rowIndex="rowIndex" @updateCell="updateCell"/>
+        <cell-row class="row" :row="row" :rowIndex="rowIndex" @updateCell="updateCell"/>
       </div>
     </div>
     <div v-else>
-      Sorry, no grid - no life.
+      <h2>Sorry, no grid - no life.</h2>
     </div>
   </section>
 </template>
@@ -25,20 +24,23 @@ import {
   populateEmptyGrid, generateRandomCells, populateNewGeneration,
 } from '@/utils/index';
 import Controls from '@/components/Controls';
-import Cell from '@/components/Cell';
+import CellRow from '@/components/CellRow';
 
 export default {
   components: {
     Controls,
-    Cell,
-  },
-  computed: {
-    ...mapGetters(['grid']),
+    CellRow,
   },
   data() {
     return {
       gamePlaying: false,
     };
+  },
+  computed: {
+    ...mapGetters(['grid']),
+    validGrid() {
+      return this.grid.length && this.grid[0].length;
+    },
   },
   methods: {
     ...mapActions(['updateGrid', 'updateCell']),
@@ -48,6 +50,8 @@ export default {
       this.updateGrid(newGeneration);
     },
     play() {
+      if (!this.grid.length) return;
+
       this.gamePlaying = setInterval(() => {
         this.nextGeneration();
       }, 100);
@@ -81,5 +85,9 @@ export default {
 
 .row {
   display: flex;
+}
+
+h2 {
+  color: indigo;
 }
 </style>
