@@ -19,6 +19,34 @@ export const generateRandomCells = () => {
   return grid;
 };
 
+export const insideGrid = ({
+  x, y, totalRows, totalColumns,
+}) => y >= 0 && x >= 0 && y < totalRows && x < totalColumns;
+
+export const countNeighbours = ({
+  grid, rowIndex, columnIndex, totalRows, totalColumns,
+}) => {
+  let numNeighbours = 0;
+
+  for (let i = -1; i < 2; i++) {
+    for (let j = -1; j < 2; j++) {
+      if (!(i === 0 && j === 0)) {
+        const yCell = rowIndex + i;
+        const xCell = columnIndex + j;
+
+        if (insideGrid({
+          x: xCell, y: yCell, totalRows, totalColumns,
+        })) {
+          const currentNeighbour = grid[rowIndex + i][columnIndex + j];
+          numNeighbours += currentNeighbour;
+        }
+      }
+    }
+  }
+
+  return numNeighbours;
+};
+
 export const populateNewGeneration = (previousGeneration) => {
   const newGeneration = previousGeneration.map(arr => [...arr]);
 
@@ -46,33 +74,3 @@ export const populateNewGeneration = (previousGeneration) => {
 
   return newGeneration;
 };
-
-function countNeighbours({
-  grid, rowIndex, columnIndex, totalRows, totalColumns,
-}) {
-  let numNeighbours = 0;
-
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
-      if (!(i === 0 && j === 0)) {
-        const yCell = rowIndex + i;
-        const xCell = columnIndex + j;
-
-        if (isGridEdge({
-          x: xCell, y: yCell, totalRows, totalColumns,
-        })) {
-          const currentNeighbour = grid[rowIndex + i][columnIndex + j];
-          numNeighbours += currentNeighbour;
-        }
-      }
-    }
-  }
-
-  return numNeighbours;
-}
-
-function isGridEdge({
-  x, y, totalRows, totalColumns,
-}) {
-  return y >= 0 && x >= 0 && y < totalRows && x < totalColumns;
-}

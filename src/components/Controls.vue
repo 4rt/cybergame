@@ -47,6 +47,7 @@ button {
   padding: 5px 10px;
   transition: background-color 0.2s ease;
   cursor: pointer;
+  font-family: inherit;
   &:hover,
   &:active {
     background-color: gainsboro;

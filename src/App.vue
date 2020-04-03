@@ -1,17 +1,17 @@
 <template>
   <main id="app">
-    <game-field />
+    <game />
   </main>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import { populateEmptyGrid } from '@/utils/index';
-import GameField from '@/components/GameField';
+import Game from '@/components/Game';
 
 export default {
   components: {
-    GameField,
+    Game,
   },
   methods: {
     ...mapActions(['updateGrid']),
@@ -34,5 +34,6 @@ export default {
     align-items: center;
     margin: 0;
     background-color: mediumslateblue;
+    font-family: "Courier New", sans-serif;
   }
 </style>
