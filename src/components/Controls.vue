@@ -39,6 +39,21 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+button {
+  background-color: white;
+  border: none;
+  margin: 0;
+  padding: 5px 10px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    background-color: gainsboro;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 2px gainsboro;
+  }
+}
 </style>

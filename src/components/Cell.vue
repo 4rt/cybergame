@@ -37,7 +37,7 @@ export default {
     border-radius: 1px;
     box-shadow: inset 0 0 1px mediumslateblue;
     transition: background-color 0.2s ease;
-
+    cursor: cell;
     &:hover,
     &.alive {
       background-color: antiquewhite;
